@@ -3,6 +3,7 @@
  */
 package com.bong.jpa.domain;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -44,9 +45,9 @@ public class Project {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Project(String name, Set<User> members) {
+	public Project(Integer id, String name) {
+		this.id = id;
 		this.name = name;
-		this.members = members;
 	}
 
 	public Integer getId() {
@@ -71,6 +72,13 @@ public class Project {
 
 	public void setMembers(Set<User> members) {
 		this.members = members;
+	}
+	
+	public void addMember(User user) {
+		if (this.members == null) {
+			this.members = new HashSet<User>();
+		}
+		members.add(user);
 	}
 
 	@Override

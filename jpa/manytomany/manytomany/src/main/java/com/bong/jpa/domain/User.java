@@ -36,7 +36,8 @@ public class User {
 	}
 
 
-	public User(String name, String loginId, String passwd) {
+	public User(Integer id, String name, String loginId, String passwd) {
+		this.id = id;
 		this.name = name;
 		this.loginId = loginId;
 		this.passwd = passwd;

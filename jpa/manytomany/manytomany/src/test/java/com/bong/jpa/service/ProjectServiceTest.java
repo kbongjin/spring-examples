@@ -6,6 +6,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,10 +16,13 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.bong.jpa.domain.Project;
 import com.bong.jpa.domain.User;
 
-
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@SpringApplicationConfiguration(classes=BongApplication.class)
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ProjectServiceTest {
+	
+	private static final Logger log = LoggerFactory.getLogger(ProjectServiceTest.class);
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -39,11 +44,26 @@ public class ProjectServiceTest {
 	private ProjectService service;
 
 	/**
-	 * ManyToMany save test case.
+	 * ManyToMany create,update,delete test case.
 	 */
 	@Test
-	public void testSaveWithUser() {
-		service.saveWithUser(new Project("aaa", null), new User("name", "idkbj", "passwd"));
+	public void testCUD() {
+		
+		log.debug("----------- CREATE test ------------------");
+		
+		service.saveWithUser(new Project(null, "aaa"), new User(null, "name", "idkbj", "passwd"));
+		
+		service.pringResult();
+		
+		log.debug("----------- UPDATE test ------------------");
+		
+		service.saveWithUser(new Project(1, "bbb"), new User(1, "ccc", "idkbj", "passwd"));
+		
+		service.pringResult();
+		
+		log.debug("----------- DELETE test ------------------");
+		
+		service.delete(1);
 		
 		service.pringResult();
 	}

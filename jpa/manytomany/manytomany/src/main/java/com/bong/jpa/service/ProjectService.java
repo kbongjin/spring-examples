@@ -3,9 +3,7 @@
  */
 package com.bong.jpa.service;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -63,11 +61,7 @@ public class ProjectService {
 		
 		log.info("user saved!!!");
 		
-		Set<User> members = new HashSet<User>();
-		members.add(user);
-		
-		project.setMembers(members);
-		
+		project.addMember(user);//insert into project_member
 		
 		//repo.save(project);// insert into project_member 가 commit 이후에 실행됨.
 		repo.saveAndFlush(project);// insert into project_member 가 commit 이전에 실행됨.
@@ -75,6 +69,13 @@ public class ProjectService {
 		log.info("saved!!!");
 		
 	}
+	
+	@Transactional
+	public void delete(Integer projectId) {
+		repo.delete(projectId);
+	}
+	
+	
 	
 	public void pringResult() {
 		
@@ -98,7 +99,7 @@ public class ProjectService {
 		log.info("-----------members---------------");
 		List<ProjectMember> members = prjMemberRepo.findAll();
 		if (members.isEmpty()) {
-			log.info("users is empty.");
+			log.info("members is empty.");
 		} else {
 			for (ProjectMember member : members) {
 				log.info(member.toString());
