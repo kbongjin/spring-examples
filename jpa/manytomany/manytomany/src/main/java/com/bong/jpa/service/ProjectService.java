@@ -86,7 +86,7 @@ public class ProjectService {
 	
 	
 	
-	public void pringResult() {
+	public void printResult() {
 		
 		log.info("#######################-projects--######################");
 		
