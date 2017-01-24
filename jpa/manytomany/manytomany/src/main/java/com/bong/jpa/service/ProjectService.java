@@ -71,6 +71,15 @@ public class ProjectService {
 	}
 	
 	@Transactional
+	public void save(Project project){
+		
+		repo.save(project);
+		
+		log.info("saved!!!");
+		
+	}
+	
+	@Transactional
 	public void delete(Integer projectId) {
 		repo.delete(projectId);
 	}
@@ -79,7 +88,7 @@ public class ProjectService {
 	
 	public void pringResult() {
 		
-		log.info("-----------projects---------------");
+		log.info("#######################-projects--######################");
 		
 		for (Project project : repo.findAll()) {
 			log.info(project.toString());

@@ -49,21 +49,22 @@ public class ProjectServiceTest {
 	@Test
 	public void testCUD() {
 		
-		log.debug("----------- CREATE test ------------------");
+		log.debug("########### CREATE test ##################");
 		
 		service.saveWithUser(new Project(null, "aaa"), new User(null, "name", "idkbj", "passwd"));
 		
 		service.pringResult();
 		
-		log.debug("----------- UPDATE test ------------------");
+		log.debug("########### UPDATE test ##################");
 		
 		service.saveWithUser(new Project(1, "bbb"), new User(1, "ccc", "idkbj", "passwd"));
+		//service.save(new Project(1, "bbb"));// delete from project_member 도 처리됨.
 		
 		service.pringResult();
 		
-		log.debug("----------- DELETE test ------------------");
+		log.debug("########### DELETE test ##################");
 		
-		service.delete(1);
+		service.delete(1);//delete from project_member 도 처리됨.
 		
 		service.pringResult();
 	}
