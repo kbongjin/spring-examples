@@ -57,5 +57,19 @@ public class SystemServiceTest {
 			Thread.sleep(500);
 		} catch(Exception e){}
 	}
+	
+	@Test
+	public void testCU() {
+		
+		//service.saveWithSubSystem(new ASystem(null, "system"), new SubSystem(null, "sub"));
+		
+		service.save(new ASystem(null, "system2"));
+		
+		service.save(new ASystem(1, "system3"));
+		
+		service.save(new SubSystem(1, "sub2"));
+		
+		service.printResult();
+	}
 
 }

@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class SubSystem {
@@ -15,6 +17,10 @@ public class SubSystem {
 	private Integer systemId;
 	
 	private String name;
+	
+	@ManyToOne
+	@JoinColumn(name = "systemId", insertable = false, updatable = false)
+	private ASystem system;
 
 	public SubSystem() {
 		// TODO Auto-generated constructor stub
@@ -23,6 +29,14 @@ public class SubSystem {
 	public SubSystem(Integer id, String name) {
 		this.id = id;
 		this.name = name;
+	}
+
+	public ASystem getSystem() {
+		return system;
+	}
+
+	public void setSystem(ASystem system) {
+		this.system = system;
 	}
 
 	public Integer getId() {

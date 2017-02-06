@@ -52,6 +52,16 @@ public class SystemService {
 	}
 	
 	@Transactional
+	public void save(ASystem system) {
+		systemRepo.save(system);
+	}
+	
+	@Transactional
+	public void save(SubSystem sub) {
+		subRepo.save(sub);
+	}
+	
+	@Transactional
 	public void delete(Integer sysId) {
 		systemRepo.delete(sysId);
 	}
