@@ -32,7 +32,7 @@ public class ASystem {
 	
 	private String name;
 	
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "system")
+	@OneToMany(mappedBy = "system")
 	private Set<SubSystem> subSystems;
 
 	/**
